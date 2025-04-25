@@ -9,9 +9,9 @@
 body {
   margin: 0;
   padding: 0;
-  min-height: 200vh; /* Make the body taller to enable scrolling */
+  min-height: 200vh; 
   background: linear-gradient(135deg, #e4b9c0 0%, #b9c0e4 50%, #b9e4c0 100%);
-  background-attachment: fixed; /* Keep background fixed while scrolling */
+  background-attachment: fixed; 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
@@ -20,7 +20,7 @@ body {
   max-width: 100%;
   height: 85vh;
   position: absolute;
-  top: 110vh; /* Position below the viewport, requiring scroll */
+  top: 110vh; 
   left: 0;
   right: 0;
   display: flex;
@@ -112,12 +112,12 @@ body {
   font-weight: 500;
   display: inline-block;
   padding-right: 0;
-  animation: scroll-text 30s linear infinite; 
+  animation: scroll-text 60s linear infinite; /* Slowed down from 30s to 60s */
 }
 
 @keyframes scroll-text {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(50%); }
+  0% { transform: translateX(50%); } /* Changed from -50% to 50% to reverse direction */
+  100% { transform: translateX(-150%); } /* Changed from 50% to -150% to ensure full text visibility */
 }
 
 .personal-info {
@@ -394,7 +394,7 @@ body {
       const bannerText = document.getElementById('bannerText');
 
       const originalText = bannerText.textContent;
-      bannerText.textContent = originalText.repeat(3); 
+      bannerText.textContent = originalText.repeat(5); // Increased from 3 to 5 for better visibility
       
       flipContainer.addEventListener('click', function() {
         if (this.classList.contains('flipped')) {
