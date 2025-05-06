@@ -111,13 +111,13 @@ body {
   color: #000;
   font-weight: 500;
   display: inline-block;
-  padding-right: 0;
-  animation: scroll-text 60s linear infinite; /* Slowed down from 30s to 60s */
+  padding-right: 50px;
+  animation: scroll-text 60s linear infinite;
 }
 
 @keyframes scroll-text {
-  0% { transform: translateX(50%); } /* Changed from -50% to 50% to reverse direction */
-  100% { transform: translateX(-150%); } /* Changed from 50% to -150% to ensure full text visibility */
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
 }
 
 .personal-info {
@@ -269,7 +269,6 @@ body {
   opacity: 0;
 }
 
-/* New styles for the empty space at the top */
 .top-space {
   height: 100vh;
   width: 100%;
@@ -392,9 +391,19 @@ body {
       const flipContainer = document.getElementById('flipContainer');
       const banner = document.getElementById('banner');
       const bannerText = document.getElementById('bannerText');
-
       const originalText = bannerText.textContent;
-      bannerText.textContent = originalText.repeat(5); // Increased from 3 to 5 for better visibility
+      const repeats = document.createElement('div');
+      repeats.style.display = 'inline-block';
+      
+      for (let i = 0; i < 10; i++) {
+        const textSpan = document.createElement('span');
+        textSpan.textContent = originalText;
+        textSpan.style.paddingRight = '50px'; 
+        repeats.appendChild(textSpan);
+      }
+      
+      bannerText.innerHTML = '';
+      bannerText.appendChild(repeats);
       
       flipContainer.addEventListener('click', function() {
         if (this.classList.contains('flipped')) {
@@ -404,8 +413,7 @@ body {
         }
         this.classList.toggle('flipped');
       });
-      
-      // Smooth scroll to document when clicking on the scroll indicator
+
       document.querySelector('.scroll-indicator').addEventListener('click', function() {
         document.querySelector('.document-container').scrollIntoView({ 
           behavior: 'smooth' 
